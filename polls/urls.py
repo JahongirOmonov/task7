@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import all, detail
+from .views import getstakan, poststakan, detail
 
 urlpatterns=[
-    path('all/', all),
-    path('detail/<int:realid>', detail)
+    path('all/', getstakan),
+    path('detail/<int:realid>', detail),
+    path('create/', poststakan)
 ]
