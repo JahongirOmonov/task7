@@ -6,6 +6,7 @@ from .serializer import stakanSerializer, eshikSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 
 # # Create your views here.
 # class getstakan(APIView):
@@ -16,6 +17,11 @@ from rest_framework import generics
 class GetAllStakan(generics.ListAPIView):
     queryset=stakan.objects.all()
     serializer_class=stakanSerializer
+    permission_classes=(IsAuthenticated,)
+
+    def get_queryset(self):
+        print(self.request.user)
+        return stakan.objects.all()
 
 
 
@@ -96,6 +102,11 @@ class GetAllEshik(generics.ListAPIView):
 
     queryset=eshik.objects.all()
     serializer_class=eshikSerializer
+    permission_classes=(IsAuthenticated,)
+
+    def get_queryset(self):
+        print(self.request.user)
+        return eshik.objects.all()
 
 
 class GetDetailEshik(generics.RetrieveAPIView):
